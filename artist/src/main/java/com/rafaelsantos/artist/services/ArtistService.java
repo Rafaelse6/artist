@@ -2,6 +2,8 @@ package com.rafaelsantos.artist.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,5 +42,18 @@ public class ArtistService {
 		entity = repository.save(entity);
 		
 		return new ArtistDTO(entity);
+	}
+	
+	@Transactional
+	public ArtistDTO update(Long id, ArtistDTO dto) {
+		try {
+			Artist entity = repository.getReferenceById(id);
+			entity.setName(dto.getName());
+			entity.setCountry(dto.getCountry());
+			entity = repository.save(entity);
+			return new ArtistDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " + id);
+		}
 	}
 }

@@ -31,4 +31,14 @@ public class ArtistService {
 		Artist entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new ArtistDTO(entity);
 	}
+	
+	@Transactional(readOnly = true)
+	public ArtistDTO insert(ArtistDTO dto) {
+		Artist entity = new Artist();
+		entity.setName(dto.getName());
+		entity.setCountry(dto.getCountry());
+		entity = repository.save(entity);
+		
+		return new ArtistDTO(entity);
+	}
 }

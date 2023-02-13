@@ -30,6 +30,22 @@ public class AlbumRepositoryTest {
 	}
 	
 	@Test
+	public void findByIdShouldReturnNonEmptyOptionalWhenIdExists() {
+		
+		Optional<Album> result = repository.findById(existingId);
+		
+		Assertions.assertTrue(result.isPresent());
+	}
+	
+	@Test
+	public void findByIdShouldReturnEmptyOptionalWhenIdDoesNotExist() {
+		
+		Optional<Album> result = repository.findById(nonExistingId);
+		
+		Assertions.assertTrue(result.isEmpty());
+	}
+	
+	@Test
 	public void saveShouldPersistWithAutoIncrementWhenIdIsNull() {
 		
 		Album album = AlbumFactory.createAlbum();

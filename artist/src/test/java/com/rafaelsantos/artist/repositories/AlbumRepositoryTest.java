@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.rafaelsantos.artist.entities.Album;
+import com.rafaelsantos.artist.repositories.tests.AlbumFactory;
 
 @DataJpaTest
 public class AlbumRepositoryTest {
@@ -19,11 +20,25 @@ public class AlbumRepositoryTest {
 	
 	private long existingId;
 	private long nonExistingId;
+	private long countTotalAlbums;
 	
 	@BeforeEach
 	void setUp() throws Exception{
 		existingId = 1L;
 		nonExistingId = 1000L;
+		 countTotalAlbums = 3L;
+	}
+	
+	@Test
+	public void saveShouldPersistWithAutoIncrementWhenIdIsNull() {
+		
+		Album album = AlbumFactory.createAlbum();
+		album.setId(null);
+		
+		album = repository.save(album);
+		
+		Assertions.assertNotNull(album.getId());
+		Assertions.assertEquals(countTotalAlbums + 1, album.getId());
 	}
 	
 	@Test

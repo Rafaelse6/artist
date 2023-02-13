@@ -1,8 +1,11 @@
 package com.rafaelsantos.artist.DTO;
 
+import java.io.Serializable;
+
 import com.rafaelsantos.artist.entities.Artist;
 
-public class ArtistDTO {
+public class ArtistDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String name;

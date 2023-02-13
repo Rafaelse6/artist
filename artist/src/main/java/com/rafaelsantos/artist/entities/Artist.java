@@ -1,12 +1,15 @@
 package com.rafaelsantos.artist.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,10 @@ public class Artist implements Serializable{
 	
 	private String name;
 	private String country;
+	
+	@ManyToMany(mappedBy = "artist")
+	private Set<Album> albums = new HashSet<>();
+	
 	
 	public Artist() {}
 
@@ -52,6 +59,10 @@ public class Artist implements Serializable{
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	
+	public Set<Album> getAlbums() {
+		return albums;
 	}
 
 	@Override

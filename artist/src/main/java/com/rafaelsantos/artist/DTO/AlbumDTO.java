@@ -8,7 +8,7 @@ import java.util.Set;
 import com.rafaelsantos.artist.entities.Album;
 import com.rafaelsantos.artist.entities.Artist;
 
-public class AlbumDTO implements Serializable{
+public class AlbumDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
@@ -29,6 +29,7 @@ public class AlbumDTO implements Serializable{
 	}
 	
 	public AlbumDTO(Album entity) {
+		super();
 		this.id = entity.getId();
 		this.name = entity.getName();
 		this.imgUrl = entity.getImgUrl();
@@ -36,7 +37,7 @@ public class AlbumDTO implements Serializable{
 	
 	public AlbumDTO(Album entity, Set<Artist> artist) {
 		this(entity);
-		artist.forEach(cat -> this.artist.add(new ArtistDTO(cat)));
+		artist.forEach(x -> this.artist.add(new ArtistDTO(x)));
 	}
 
 	public Long getId() {

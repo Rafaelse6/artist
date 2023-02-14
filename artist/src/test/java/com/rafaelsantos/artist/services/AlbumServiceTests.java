@@ -83,7 +83,7 @@ public class AlbumServiceTests {
 	}
 
 	@Test
-	public void updateShouldReturnProductDTOWhenIdExists() {
+	public void updateShouldReturnAlbumDTOWhenIdExists() {
 		AlbumDTO result = service.update(existingId, albumDto);
 
 		Assertions.assertNotNull(result);
@@ -97,7 +97,7 @@ public class AlbumServiceTests {
 	}
 
 	@Test
-	public void findByIdShouldReturnProductDTOWhenIdExists() {
+	public void findByIdShouldReturnAlbumDTOWhenIdExists() {
 		AlbumDTO result = service.findById(existingId);
 
 		Assertions.assertNotNull(result);

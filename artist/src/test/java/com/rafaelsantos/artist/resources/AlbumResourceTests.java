@@ -78,7 +78,7 @@ public class AlbumResourceTests {
 	}
 	
 	@Test
-	public void insertShouldReturnCreatedAndProductDTO() throws Exception {
+	public void insertShouldReturnCreatedAndAlbumDTO() throws Exception {
 
 		String jsonBody = objectMapper.writeValueAsString(albumDto);
 

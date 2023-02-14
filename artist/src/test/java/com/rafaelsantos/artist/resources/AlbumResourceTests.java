@@ -1,12 +1,12 @@
-package com.rafaelsantos.artist.AlbumResource;
+package com.rafaelsantos.artist.resources;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,11 +26,10 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rafaelsantos.artist.DTO.AlbumDTO;
-import com.rafaelsantos.artist.repositories.tests.Factory;
-import com.rafaelsantos.artist.resources.AlbumResource;
 import com.rafaelsantos.artist.services.AlbumService;
 import com.rafaelsantos.artist.services.exceptions.DatabaseException;
 import com.rafaelsantos.artist.services.exceptions.ResourceNotFoundException;
+import com.rafaelsantos.artist.tests.Factory;
 
 @WebMvcTest(AlbumResource.class)
 public class AlbumResourceTests {
@@ -75,6 +74,24 @@ public class AlbumResourceTests {
 		doThrow(DatabaseException.class).when(service).delete(dependentId);
 	}
 	
+	@Test
+	public void deleteShouldReturnNoContentWhenIdExists() throws Exception{
+		ResultActions result = 
+				mockMvc.perform(delete("/albums/{id}", existingId)
+					.accept(MediaType.APPLICATION_JSON));
+
+		result.andExpect(status().isNoContent());
+	}
+
+
+	@Test
+	public void deleteShouldReturnNotFoundWhenIdDoesNotExist() throws Exception {
+		ResultActions result = 
+				mockMvc.perform(delete("/albums/{id}", nonExistingId)
+					.accept(MediaType.APPLICATION_JSON));
+
+		result.andExpect(status().isNotFound());
+	}
 	
 	@Test
 	public void updateShouldReturnAlbumDTOWhenIdExists() throws Exception {

@@ -24,9 +24,9 @@ import com.rafaelsantos.artist.entities.Album;
 import com.rafaelsantos.artist.entities.Artist;
 import com.rafaelsantos.artist.repositories.AlbumRepository;
 import com.rafaelsantos.artist.repositories.ArtistRepository;
-import com.rafaelsantos.artist.repositories.tests.Factory;
 import com.rafaelsantos.artist.services.exceptions.DatabaseException;
 import com.rafaelsantos.artist.services.exceptions.ResourceNotFoundException;
+import com.rafaelsantos.artist.tests.Factory;
 
 @ExtendWith(SpringExtension.class)
 public class AlbumServiceTests {

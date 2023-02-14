@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.rafaelsantos.artist.entities.Album;
-import com.rafaelsantos.artist.repositories.tests.Factory;
+import com.rafaelsantos.artist.tests.Factory;
 
 @DataJpaTest
 public class AlbumRepositoryTest {

@@ -1,4 +1,4 @@
-package com.rafaelsantos.artist.repositories.tests;
+package com.rafaelsantos.artist.tests;
 
 import com.rafaelsantos.artist.DTO.AlbumDTO;
 import com.rafaelsantos.artist.entities.Album;

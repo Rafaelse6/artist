@@ -20,26 +20,24 @@ public class AlbumDTO implements Serializable {
 	public AlbumDTO() {
 		
 	}
-
+	
 	public AlbumDTO(Long id, String name, String imgUrl) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.imgUrl = imgUrl;
 	}
 	
 	public AlbumDTO(Album entity) {
-		super();
-		this.id = entity.getId();
-		this.name = entity.getName();
-		this.imgUrl = entity.getImgUrl();
+		id = entity.getId();
+		name = entity.getName();
+		imgUrl = entity.getImgUrl();
 	}
 	
 	public AlbumDTO(Album entity, Set<Artist> artist) {
 		this(entity);
 		artist.forEach(x -> this.artist.add(new ArtistDTO(x)));
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -66,5 +64,9 @@ public class AlbumDTO implements Serializable {
 
 	public List<ArtistDTO> getArtist() {
 		return artist;
+	}
+
+	public void setArtist(List<ArtistDTO> artist) {
+		this.artist = artist;
 	}
 }

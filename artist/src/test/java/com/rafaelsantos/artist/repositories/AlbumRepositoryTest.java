@@ -59,11 +59,11 @@ public class AlbumRepositoryTest {
 	
 	@Test
 	public void deleteShouldDeleteObjectWhenIdExists() {
-		
+
 		repository.deleteById(existingId);
-		
+
 		Optional<Album> result = repository.findById(existingId);
-		
+
 		Assertions.assertFalse(result.isPresent());
 	}
 	
